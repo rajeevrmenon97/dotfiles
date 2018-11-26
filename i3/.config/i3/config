@@ -104,8 +104,8 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 
 for_window [class="Firefox"] move to workspace $workspace1
+for_window [class="Google-chrome"] move to workspace $workspace1
 for_window [class="Atom"] move to workspace $workspace3
-for_window [class="Terminator"] move to workspace $workspace2
 for_window [class="Nautilus"] move to workspace $workspace4
 for_window [class="Spotify"] move to workspace $workspace5
 
@@ -132,7 +132,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #screenshot
-bindsym $mod+Shift+s exec scrot
+bindsym $mod+Shift+s exec "scrot -e 'mv $f ~/Pictures/Screenshots/'"
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
