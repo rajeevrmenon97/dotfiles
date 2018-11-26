@@ -7,7 +7,6 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
@@ -19,6 +18,7 @@ Plug 'posva/vim-vue'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'djoshea/vim-autoread'
 Plug 'slim-template/vim-slim'
+Plug 'dylanaraps/wal.vim'
 
 call plug#end()
 """""""""""""""""""""""""""
