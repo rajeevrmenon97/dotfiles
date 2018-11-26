@@ -1,0 +1,226 @@
+[colors]
+icon = 4ec2f7
+fg = #002636
+bg = #e4e4e4
+
+[bar/top]
+width = 100%
+height = 30
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+background = #00000000
+foreground = #ccffffff
+
+line-color = ${bar/bottom.background}
+line-size = 16
+
+spacing = 1
+padding-right = 1
+module-margin = 1
+
+font-0 = FuraCode Nerd Font:size=12
+
+modules-left = i3
+modules-right = volume date battery
+modules-center = title
+
+[bar/bottom]
+bottom = true
+width = 100%
+height = 30
+
+background = ${bar/top.background}
+foreground = ${bar/top.foreground}
+
+line-color = ${bar/top.background}
+line-size = 2
+
+spacing = 1
+padding-right = 1
+module-margin-left = 0
+module-margin-right = 6
+
+font-0 = FuraCode Nerd Font:size=12
+
+modules-left = powermenu openweathermap
+modules-right = cpu memory wireless-network
+modules-center = spotify
+
+[module/i3]
+type = internal/i3
+ws-icon-1 = 
+ws-icon-2 = 
+ws-icon-3 = 
+ws-icon-4 = 
+ws-icon-5 = 
+ws-icon-6 = 
+ws-icon-7 = 
+ws-icon-8 = 
+ws-icon-9 = 
+pin-workspaces = false
+strip-wsnumbers = true
+format = <label-state><label-mode>
+
+label-mode = %mode%
+label-focused = %icon%%name%
+label-focused-background = ${colors.bg}
+label-focused-foreground = ${colors.fg}
+label-unfocused-foreground = ${colors.icon}
+label-unfocused-padding = 2
+label-visible-padding = 2
+label-urgent-padding = 2
+label-mode-padding = 2
+label-focused-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label><ramp-coreload>
+label = CPU
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 0
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 0
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 0
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 0
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 0
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 0
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 0
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 0
+ramp-coreload-7-foreground = #ff5555
+
+[module/date]
+type = internal/date
+date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM
+
+bar-used-width = 10
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 0
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 0
+bar-used-empty = ─
+bar-used-empty-font = 0
+bar-used-empty-foreground = #444444
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/spotify.py -f '{artist} - {song}'
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+label-connected =  %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/volume]
+type = internal/alsa
+master-mixer = Master
+
+format-volume = <label-volume>
+label-muted =  muted
+
+[module/powermenu]
+type = custom/menu
+
+label-open = "   "
+label-open-foreground = ${colors.icon}
+label-close =  cancel
+label-close-foreground = ${colors.icon}
+label-separator = " | "
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = lock
+menu-0-2-exec = terminator -e 'dm-tool lock'
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = terminator -e 'sudo reboot'
+
+menu-2-0 = power off
+menu-2-0-exec = terminator -e 'sudo shutdown now'
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/clock]
+type = internal/date
+interval = 2
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 75
+
+[module/openweathermap]
+type = custom/script
+exec = ~/.config/polybar/openweathermap.sh
+interval = 600
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <ramp-capacity><label-full>
+label-charging = %percentage%%
+label-discharging =%percentage%%
+label-full = 100%
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-framerate = 500
+
+; vim:ft=dosini
