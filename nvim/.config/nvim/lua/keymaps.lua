@@ -8,8 +8,12 @@ local key_mapper = function(mode, key, result)
 end
 
 key_mapper('', '<up>', '<nop>')
+key_mapper('i', '<up>', '<nop>')
 key_mapper('', '<down>', '<nop>')
+key_mapper('i', '<down>', '<nop>')
 key_mapper('', '<left>', '<nop>')
+key_mapper('i', '<left>', '<nop>')
 key_mapper('', '<right>', '<nop>')
+key_mapper('i', '<right>', '<nop>')
 key_mapper('i', 'jk', '<ESC>')
 key_mapper('v', 'jk', '<ESC>')

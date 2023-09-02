@@ -41,9 +41,11 @@ packer.init({
 -- Plugins list
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself	
-	use("m00qek/baleia.nvim")
-	use("dragfire/leetup.nvim")
 	use("preservim/nerdtree")
+	use({
+    	    "iamcco/markdown-preview.nvim",
+            run = function() vim.fn["mkdp#util#install"]() end,
+        })
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
